@@ -1,20 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar"
+import { Text, Image, SafeAreaView, TouchableOpacity } from "react-native"
+import {
+  useDimensions,
+  useDeviceOrientation,
+} from "@react-native-community/hooks"
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const dimensions = useDimensions()
+  const orientation = useDeviceOrientation()
+  console.log("App executed")
+  console.log(dimensions)
+  console.log(orientation)
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  return (
+    <SafeAreaView className="flex-1 items-center justify-center bg-blue-500">
+      <Text>Hello, World!</Text>
+      <TouchableOpacity>
+        <Image
+          fadeDuration={1000}
+          blurRadius={10}
+          source={{
+            uri: "https://picsum.photos/200/300",
+            height: 300,
+            width: 200,
+          }}
+        />
+      </TouchableOpacity>
+      <StatusBar style="auto" />
+    </SafeAreaView>
+  )
+}
